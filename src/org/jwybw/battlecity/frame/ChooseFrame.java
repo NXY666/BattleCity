@@ -32,21 +32,10 @@ public class ChooseFrame extends Frame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
-					case KeyEvent.VK_RIGHT, KeyEvent.VK_D -> {
-						System.out.println("右");
-						selectedLevel++;
-					}
-					case KeyEvent.VK_LEFT, KeyEvent.VK_A -> {
-						System.out.println("左");
-						selectedLevel--;
-					}
-					case KeyEvent.VK_ENTER, KeyEvent.VK_J -> {
-						System.out.println("好");
-						transitToFrame(new StageFrame(frame, playerCount, selectedLevel));
-					}
-					case KeyEvent.VK_ESCAPE -> {
-						transitToFrame(new MenuFrame(frame));
-					}
+					case KeyEvent.VK_RIGHT, KeyEvent.VK_D -> selectedLevel++;
+					case KeyEvent.VK_LEFT, KeyEvent.VK_A -> selectedLevel--;
+					case KeyEvent.VK_ENTER, KeyEvent.VK_J -> transitToFrame(new StageFrame(frame, playerCount, selectedLevel));
+					case KeyEvent.VK_ESCAPE -> transitToFrame(new MenuFrame(frame));
 				}
 				if (selectedLevel < 1) {
 					selectedLevel = 1;

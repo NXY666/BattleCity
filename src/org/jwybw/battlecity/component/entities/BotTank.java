@@ -54,14 +54,12 @@ public class BotTank extends Tank {
 				if (direction == Directions.Right && endX > nowX || direction == Directions.Left && endX < nowX) {
 					if (attack("bot")) {
 						botAttackTimer += preciseAttack;
-						System.out.println(random.nextInt(10) + "左右");
 					}
 				}
 			} else if (Math.abs(endX - nowX) <= 1 && Math.abs(endY - nowY) <= 4) {
 				if (direction == Directions.Down && endY > nowY || direction == Directions.Up && endY < nowY) {
 					if (attack("bot")) {
 						botAttackTimer += preciseAttack;
-						System.out.println(random.nextInt(10) + "上下");
 					}
 				}
 			}
@@ -152,7 +150,6 @@ public class BotTank extends Tank {
 					target = "NONE";
 				}
 			}
-// System.out.println("$ " + getX() / 32 + " " + getY() / 32 + " " + nextNode.x + " " + nextNode.y);
 		} else {
 			if (pathStack.size() <= 2) {
 				if (Objects.equals(target, "COMPONENT")) {
@@ -191,11 +188,6 @@ public class BotTank extends Tank {
 	public Stack<Node> findRoad(int avoidBrick, int startX, int startY, int endX, int endY) {
 		mapPanel.updateMapArray(this, avoidBrick > 0);
 		AStar as = new AStar(mapPanel.mapArray, 26, 26, startY / 16, startX / 16, endY / 16, endX / 16);
-		// System.out.print("*");
-		// for (Node node : testStack) {
-		// 	System.out.print("<-(" + node.x + "," + node.y + ")");
-		// }
-		// System.out.println("<-" + "(" + startX / 32 + "," + startY / 32 + ")");
 		return as.AStarSearch();
 	}
 
@@ -321,6 +313,7 @@ public class BotTank extends Tank {
 		@Override
 		public void run() {
 			try {
+				//noinspection InfiniteLoopStatement
 				while (true) {
 					botAI();
 					Thread.sleep(GameFrame.FRESH);
